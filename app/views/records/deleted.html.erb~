@@ -1,0 +1,13 @@
+<ul class="nav nav-tabs" role="tablist">
+<li><%= link_to "View", records_path %></li>
+<li><%= link_to "New Article", new_record_path %></li>
+<li class="active"><%= link_to "Deleted Articles", deleted_path %></li>
+<li><%= link_to "Display", display_path %></li>
+</ul>
+<table class="table"><tr>
+<% @d.each do |a| %>
+  <td><%= a.name %></td>
+<td><%= link_to "Destroy", records_destroyed_path(a), data: {confirm: 'Are u sure'} %></td>
+<td><%= link_to "Restore", records_restore_path(a), data: {confirm: 'Are u sure'} %></td></tr>
+<% end %>
+</table>

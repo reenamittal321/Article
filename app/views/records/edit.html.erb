@@ -1,0 +1,41 @@
+<h3><%= "Edit Article" %></h3><br>
+<table class="table table-responsive"> 
+
+<%= form_for(@record, :html => { :multipart => true }) do |f| %>
+<tr>
+<td><%= f.label :Article_name %></td>
+<td><%= f.text_field :name %></td>
+</tr>
+<tr>
+<td><%= f.label :description %></td>
+<td><%= f.text_area :description %></td>
+</tr>
+<tr>
+ <td><%= f.label :Add_Tag %></td>
+</tr>
+<%= f.fields_for :tags do |d| %>
+<tr><td><%= d.text_field :tag %></td>
+
+<td><%= link_to "Remove", tag_path(d.object.id), method: :delete, data: {confirm: 'Are u Sure' } %></td>
+<% end %>
+ </tr>
+<tr><td>
+
+<%= f.label :status %></td><td>
+<%= f.radio_button :status, 'Complete' %>
+<%= f.label :status, 'Complete', :value => "Complete" %>
+<%= f.radio_button :status, 'Reviewed' %>
+<%= f.label :status, 'Reviewed', :value => "Reviewed" %>
+<%= f.radio_button :status, 'Published' %>
+<%= f.label :status, 'Published', :value => "Published" %>
+</td>
+
+</tr><tr><td>
+<div class="actions" %>
+ <br> <%= f.submit %></td></tr>
+</div>
+<% end %>
+<br>
+</table>
+<%= link_to "Show", record_path %>
+<%= link_to "Back", records_path %>

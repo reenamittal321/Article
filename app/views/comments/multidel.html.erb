@@ -1,0 +1,6 @@
+<%= form_for :comment do |a| %>
+<% debugger %>
+<%= a.record.comments.each do |p| %>
+ <%= p.comment %>
+<% end %>
+<% end %>

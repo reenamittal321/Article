@@ -1,0 +1,13 @@
+class Comment < ActiveRecord::Base
+   belongs_to :user
+   belongs_to :record
+ before_save :change
+
+ def change
+   debugger
+  if comment.blank?
+    debugger
+      self.comment.delete
+  end
+ end
+end

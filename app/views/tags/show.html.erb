@@ -1,0 +1,7 @@
+<h3><%= "Articles" %></h3>
+
+<% @tags.each do |a| %>
+
+<h4><%= link_to a.record.name, record_path(a.record_id) %></h4>
+
+<% end %>

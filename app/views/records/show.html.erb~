@@ -1,0 +1,58 @@
+<table class="table">
+<tr>
+<td><%= "Name" %></td>
+
+<td><%= @record.name %></td></tr>
+<tr>
+<td><%= "description" %></td>
+
+<td><%= @record.description %></td>
+</tr><tr>
+
+<%= form_for(@record, :html => { :multipart => true }) do |f| %>
+<td><%= f.label :Add_Tag %></td>
+<td><%= fields_for :tag do |a| %>
+    <%= a.text_field :tag_name, :name => "record[tags_attributes][15][tag_name]" %></td>
+</tr>
+<% end %><tr>
+<%= f.fields_for :tags do |d| %>
+<% unless d.object.tag.blank? %> 
+<td><%= link_to d.object.tag, tag_path(d.object.id) %>
+<%= link_to "(Remove)", tag_path(d.object.id), method: :delete, data: {confirm: 'Are u Sure' } %></td>
+<% end %>
+<% end %>
+</tr>
+<tr>
+<td><u><%= f.label :Comments %></td></u>
+<tr>
+<%= f.fields_for :comments do |a| %>
+<% unless a.object.comment.blank? %>
+<td><%= a.object.user.name  %></td>
+<td>
+<%= a.object.comment if (current_user.id != a.object.user_id) %>
+<%= a.text_field :comment if (current_user.id == a.object.user_id) %>
+<td><%= link_to "Delete", comment_path(a.object.id), method: :delete, data: { confirm: 'Are u sure' } if (current_user.id == a.object.user_id)  %></td>
+<td><%= check_box_tag "comments[],a.object.id" %></td>
+
+<% end %>
+</tr>
+
+<% end %>
+<tr>
+<td><%= "Add Comment" %></td>
+<%= f.fields_for :comment do |a| %>
+<td><%= a.text_area :comment, :name => "record[comments_attributes][15][comment]" %></td>
+<td>
+<%= a.hidden_field :user_id, :value => current_user.id, :name => "record[comments_attributes][15][user_id]" %></td>
+</tr>
+<% end %>
+<tr>
+<td>
+
+<%= f.submit "Post" %></td>
+</tr>
+<% end %>
+</table>
+<br>
+<br>
+<%= link_to "Back", records_path %>
