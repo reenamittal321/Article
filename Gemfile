@@ -37,7 +37,7 @@ gem 'cancancan', '~> 1.10'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
-    gem 'sqlite3', '1.3.10'
+ gem 'sqlite3'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 gem 'execjs'
@@ -48,7 +48,8 @@ gem 'execjs'
   gem 'spring'
 end
 group :assets do
-    gem 'sass-rails', '~> 5.0'
-   gem 'coffee-rails', '~> 4.1.0'
-    gem 'uglifier', '>= 1.3.0'
+ gem 'sass-rails', '~> 5.0'
+ gem 'uglifier', '>= 1.3.0'
+ gem 'coffee-rails', '~> 4.1.0'
 end
+gem 'rails_12factor', group: :production
