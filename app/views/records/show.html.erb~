@@ -50,8 +50,12 @@
 
 <%= f.submit "Post" %></td>
 </tr>
+<tr>
+<td>
+</td></tr>
 <% end %>
 </table>
 <br>
 <br>
+<%= link_to "Edit", edit_record_path %>
 <%= link_to "Back", records_path %>
