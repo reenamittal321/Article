@@ -33,7 +33,7 @@ before_action :set_record, only: [:show, :edit, :update, :destroy]
     if @record.update_attributes(record_params)
       
        @record.save
-       redirect_to records_path
+       redirect_to record_path
     end
 
   end 
