@@ -1,0 +1,21 @@
+Thu, 24 Sep 2015 13:22:27 +0530
+README.rdoc	Thu, 10 Sep 2015 18:22:53 +0530
+app/controllers/application_controller.rb	Tue, 22 Sep 2015 13:15:04 +0530
+app/controllers/comments_controller.rb	Tue, 22 Sep 2015 14:32:32 +0530
+app/controllers/records_controller.rb	Tue, 22 Sep 2015 14:37:29 +0530
+app/controllers/tags_controller.rb	Tue, 22 Sep 2015 14:28:03 +0530
+app/controllers/welcome_controller.rb	Fri, 11 Sep 2015 09:46:06 +0530
+app/helpers/aa_helper.rb	Fri, 11 Sep 2015 16:37:57 +0530
+app/helpers/application_helper.rb	Thu, 10 Sep 2015 18:22:53 +0530
+app/helpers/articles_helper.rb	Fri, 11 Sep 2015 09:50:56 +0530
+app/helpers/comments_helper.rb	Fri, 11 Sep 2015 09:51:12 +0530
+app/helpers/records_helper.rb	Fri, 11 Sep 2015 10:04:32 +0530
+app/helpers/tag_helper.rb	Wed, 16 Sep 2015 11:24:51 +0530
+app/helpers/tags_helper.rb	Thu, 17 Sep 2015 16:34:57 +0530
+app/helpers/users_helper.rb	Fri, 11 Sep 2015 16:10:20 +0530
+app/helpers/welcome_helper.rb	Fri, 11 Sep 2015 09:46:07 +0530
+app/models/ability.rb	Tue, 22 Sep 2015 14:31:04 +0530
+app/models/comment.rb	Sat, 19 Sep 2015 15:17:33 +0530
+app/models/record.rb	Wed, 16 Sep 2015 13:26:53 +0530
+app/models/tag.rb	Sat, 19 Sep 2015 12:59:15 +0530
+app/models/user.rb	Tue, 22 Sep 2015 11:47:23 +0530
