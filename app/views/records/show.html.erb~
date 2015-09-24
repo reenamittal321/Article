@@ -32,7 +32,6 @@
 <%= a.object.comment if (current_user.id != a.object.user_id) %>
 <%= a.text_field :comment if (current_user.id == a.object.user_id) %>
 <td><%= link_to "Delete", comment_path(a.object.id), method: :delete, data: { confirm: 'Are u sure' } if (current_user.id == a.object.user_id)  %></td>
-<td><%= check_box_tag "comments[],a.object.id" %></td>
 
 <% end %>
 </tr>
