@@ -13,8 +13,8 @@ class TagsController < ApplicationController
 
   def show
   
-     @tags = Tag.all.where(tag:@tag.tag)
-      
+  @tags = Tag.all.where(tag:@tag.tag)
+  
   end
 
   def destroy

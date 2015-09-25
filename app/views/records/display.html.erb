@@ -6,6 +6,7 @@
 <li class="active"><%= link_to "Published", display_path %></li>
 </ul>
 <table class="table table-striped">
+
 <% @a.each do |a| %>
 <tr><td><%= link_to a.name, record_path(a) %></td>
 <td>

@@ -20,6 +20,7 @@
  
    <% @records.each do |a| %>
     <tr>
+
      <td> 
      <% if a.name %>
   <button type="button" class="btn btn-link has-popover" data-toggle="popover" title="Article Name" data-content="<%= a.name %>"><%= a.username %></button>
@@ -33,7 +34,8 @@
      <%= link_to "edit", edit_record_path(a) %>
        <% end %></td>
        
-     <td><%= link_to "show", record_path(a) %></td>
+     <td>
+       <%= link_to "show", record_path(a) %></td>
       <td> <% if can? :destroy, a %>
      <%= link_to "delete", record_path(a), method: :delete, data: { confirm: 'Are u sure? ' } %>
    <% end %></td>
@@ -44,6 +46,11 @@
   </tr>
 
 </table>
+
+
+
+
+
   </div>
 <br>
 <%= will_paginate @records %>
