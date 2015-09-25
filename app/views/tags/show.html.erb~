@@ -1,7 +1,15 @@
 <h3><%= "Articles" %></h3>
+<table class="table table-striped">
 
 <% @tags.each do |a| %>
-<% debugger %>
-<h4><%= link_to a.record.name, record_path(a.record_id) %></h4>
-
+<tr>
+<td><% if a.record.status == "Published" %>
+<h5><%= link_to a.record.name, record_path(a.record_id) %></h5></td>
+<td> <% if can? :edit, a.record %><%= link_to "Edit", edit_record_path(a.record_id) %><% end %></td>
+<td><%= link_to "Show", record_path(a.record_id) %></td>
+<td>
+ <% if can? :destroy, a.record %><%= link_to "Delete", record_path(a.record_id), method: :delete, data: { confirm: "Are u sure" } %><% end %></td>
+<td>
+ <% if can? :destroyed, a.record %><%= link_to "Destroy", records_destroyed_path(a.record_id), data: { confirm: 'Are u sure? ' } %><% end %></td>
+<% end %>
 <% end %>

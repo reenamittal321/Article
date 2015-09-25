@@ -17,7 +17,7 @@
 <% end %><tr>
 <%= f.fields_for :tags do |d| %>
 <% unless d.object.tag.blank? %> 
-<td><%= link_to d.object.tag, tag_path(d.object.id) %>
+<td><%= link_to d.tag, tag_path(d.object.id) %>
 <%= link_to "(Remove)", tag_path(d.object.id), method: :delete, data: {confirm: 'Are u Sure' } %></td>
 <% end %>
 <% end %>
@@ -50,9 +50,7 @@
 
 <%= f.submit "Post" %></td>
 </tr>
-<tr>
-<td>
-</td></tr>
+
 <% end %>
 </table>
 <br>

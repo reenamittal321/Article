@@ -19,12 +19,19 @@
   
  
    <% @records.each do |a| %>
-    <tr><td><%= a.username %></td>
-     <td><%= a.name %></td>
+    <tr>
+     <td> 
+     <% if a.name %>
+  <button type="button" class="btn btn-link has-popover" data-toggle="popover" title="Article Name" data-content="<%= a.name %>"><%= a.username %></button>
+<% end %>
+ </td>
+     <td><span class="has-tooltip" data-toggle="tooltip" title="<%= "welcome" %><% if a.name? %>
+ <%= a.name %>
+<% end %></span></td>
      
-      <td>  
+      <td>   <% if can? :edit, a %>
      <%= link_to "edit", edit_record_path(a) %>
-      </td>
+       <% end %></td>
        
      <td><%= link_to "show", record_path(a) %></td>
       <td> <% if can? :destroy, a %>

@@ -19,8 +19,15 @@
   
  
    <% @records.each do |a| %>
-    <tr><td><%= a.username %></td>
-     <td><%= a.name %></td>
+    <tr>
+     <td> 
+     <% if a.name %>
+  <button type="button" class="btn btn-link has-popover" data-toggle="popover" title="Article Name" data-content="<%= a.name %>"><%= a.username %></button>
+<% end %>
+ </td>
+     <td><span class="has-tooltip" data-toggle="tooltip" title="<%= "Created on #{a.created_at.strftime("%m/%e/%Y at %w:%M %p")}, Last modified on #{a.updated_at.strftime("%m/%e/%Y at %w:%M %p")}" %>"><% if a.name? %>
+ <%= a.name %>
+<% end %></span></td>
      
       <td>   <% if can? :edit, a %>
      <%= link_to "edit", edit_record_path(a) %>
