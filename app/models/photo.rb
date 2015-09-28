@@ -4,5 +4,5 @@ class Photo < ActiveRecord::Base
    
    
     belongs_to :Record
-   
+  
 end

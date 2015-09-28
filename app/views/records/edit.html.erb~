@@ -25,13 +25,13 @@
 
 <tr><%= f.fields_for :photos do |m| %>
  <td>
-  <%= image_tag m.object.avatar %>
+  <%= image_tag m.object.avatar %><br>
   <%= m.file_field :avatar %>
    <%= link_to "Delete", photo_path(m.object.id), method: :delete, data: {confirm: "Are u sure" } %>
   </td><% end %></tr>
 <tr><td>
 <%= f.label :Add_photo %></td>
-<td><%= f.fields_for :photos do |n| %>
+<td><%= f.fields_for :photo do |n| %>
 <%= n.file_field :avatar, :name => "record[photos_attributes][10][avatar]" %></td>
 <% end %>
 </tr>

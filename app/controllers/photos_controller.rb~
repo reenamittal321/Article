@@ -11,6 +11,9 @@ before_action :set_photo, only: [:show, :edit, :update, :destroy]
  
  def create
  end
+  
+ def show
+ end 
 
  def destroy
   if @photo.destroy
@@ -24,6 +27,6 @@ before_action :set_photo, only: [:show, :edit, :update, :destroy]
  end
 
  def photo_params
-  params.require(:photo).permit(:id, :record_id, :avatar)
+  params.require(:photo).permit(:id, :record_id, :user_id, :avatar)
  end
 end

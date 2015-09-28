@@ -26,7 +26,7 @@
 <tr><%= f.fields_for :photos do |m| %>
  <td>
   <%= image_tag m.object.avatar %>
-  <%= m.file_field :avatar %>
+  <%= m.file_field :avatar %><br>
    <%= link_to "Delete", photo_path(m.object.id), method: :delete, data: {confirm: "Are u sure" } %>
   </td><% end %></tr>
 <tr><td>

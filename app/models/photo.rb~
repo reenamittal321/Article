@@ -2,7 +2,7 @@ class Photo < ActiveRecord::Base
 
    mount_uploader :avatar, AvatarUploader
    
-    has_many :tags
+   
     belongs_to :Record
-    accepts_nested_attributes_for :tags
+   belongs_to :User
 end

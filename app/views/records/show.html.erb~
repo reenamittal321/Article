@@ -12,11 +12,11 @@
 <%= form_for(@record, :html => { :multipart => true }) do |f| %>
 <tr><%= f.fields_for :photos do |m| %>
     <td>
-   <%= image_tag m.object.avatar %></td>
- <% end %></tr>
+   <%= image_tag m.object.avatar %>
+ </td><% end %></tr>
 <tr>
 <td><%= f.label :Add_Tag %></td>
-<td><%= f.fields_for :tags do |a| %>
+<td><%= f.fields_for :tag do |a| %>
   <%= a.text_field :tag_name, :name => "record[tags_attributes][15][tag_name]", class: "form-control" %></td>
 </tr>
 <% end %><tr>
