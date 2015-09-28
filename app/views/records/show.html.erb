@@ -7,12 +7,17 @@
 <td><%= "description" %></td>
 
 <td><%= @record.description %></td>
-</tr><tr>
+</tr>
 
 <%= form_for(@record, :html => { :multipart => true }) do |f| %>
+<tr><%= f.fields_for :photos do |m| %>
+    <td>
+   <%= image_tag m.object.avatar %></td>
+ <% end %></tr>
+<tr>
 <td><%= f.label :Add_Tag %></td>
-<td><%= fields_for :tag do |a| %>
-    <%= a.text_field :tag_name, :name => "record[tags_attributes][15][tag_name]" %></td>
+<td><%= f.fields_for :tags do |a| %>
+  <%= a.text_field :tag_name, :name => "record[tags_attributes][15][tag_name]", class: "form-control" %></td>
 </tr>
 <% end %><tr>
 <%= f.fields_for :tags do |d| %>
@@ -26,11 +31,12 @@
 <td><u><%= f.label :Comments %></td></u>
 <tr>
 <%= f.fields_for :comments do |a| %>
+  
 <% unless a.object.comment.blank? %>
 <td><%= a.object.user.name  %></td>
 <td>
 <%= a.object.comment if (current_user.id != a.object.user_id) %>
-<%= a.text_field :comment if (current_user.id == a.object.user_id) %>
+<%= a.text_field :comment, class: "form-control" if (current_user.id == a.object.user_id) %>
 <td><%= link_to "Delete", comment_path(a.object.id), method: :delete, data: { confirm: 'Are u sure' } if (current_user.id == a.object.user_id)  %></td>
 
 <% end %>
@@ -38,16 +44,29 @@
 
 <% end %>
 <tr>
-<td><%= "Add Comment" %></td>
-<%= f.fields_for :comment do |a| %>
-<td><%= a.text_area :comment, :name => "record[comments_attributes][15][comment]" %></td>
 <td>
+
+<%= f.fields_for :comment do |a| %>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Add Comment</button>
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="container-fluid">
+      <%= a.text_area :comment, :name => "record[comments_attributes][15][comment]" %>
+<div class="modal-footer">
+       <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+       
+      </div>
+    </div>
+  </div>
+</div>
+</div>
 <%= a.hidden_field :user_id, :value => current_user.id, :name => "record[comments_attributes][15][user_id]" %></td>
 </tr>
 <% end %>
 <tr>
 <td>
-
 <%= f.submit "Post" %></td>
 </tr>
 
@@ -55,5 +74,5 @@
 </table>
 <br>
 <br>
-<%= link_to "Edit", edit_record_path %>
-<%= link_to "Back", records_path %>
+<%= link_to "Edit", edit_record_path, class: "btn btn-default btn-sm" %>
+<%= link_to "Back", records_path, class: "btn btn-default btn-sm" %>

@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   get 'records/index'
   
  
-  resources :records 
+  resources :records
+  resources :photos 
   resources :comments
   resources :tags
   resources :records do
@@ -11,10 +12,10 @@ Rails.application.routes.draw do
     resources :comments
        
     resources :tags
-    
+    resources :photos
   end
  
-  
+   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

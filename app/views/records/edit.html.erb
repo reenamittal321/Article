@@ -4,24 +4,38 @@
 <%= form_for(@record, :html => { :multipart => true }) do |f| %>
 <tr>
 <td><%= f.label :Article_name %></td>
-<td><%= f.text_field :name %></td>
+<td><%= f.text_field :name, class: "form-control" %></td>
 </tr>
 <tr>
 <td><%= f.label :description %></td>
-<td><%= f.text_area :description %></td>
+<td><%= f.text_area :description, class: "form-control" %></td>
 </tr>
 <tr>
- <td><%= f.label :Add_Tag %></td>
+ <td><%= f.label :Tag %></td>
 </tr>
 <%= f.fields_for :tags do |d| %>
-<tr><td><%= d.text_field :tag %></td>
+<% unless d.object.tag.blank? %>
+<tr><td><%= d.object.tag %></td>
 
 <td><%= link_to "Remove", tag_path(d.object.id), method: :delete, data: {confirm: 'Are u Sure' } %></td>
 <% end %>
- </tr>
-<tr><td>
 
-<%= f.label :status %></td><td>
+<% end %>
+ </tr>
+
+<tr><%= f.fields_for :photos do |m| %>
+ <td>
+  <%= image_tag m.object.avatar %>
+  <%= m.file_field :avatar %>
+   <%= link_to "Delete", photo_path(m.object.id), method: :delete, data: {confirm: "Are u sure" } %>
+  </td><% end %></tr>
+<tr><td>
+<%= f.label :Add_photo %></td>
+<td><%= f.fields_for :photos do |n| %>
+<%= n.file_field :avatar, :name => "record[photos_attributes][10][avatar]" %></td>
+<% end %>
+</tr>
+<tr><td><%= f.label :status %></td><td>
 <%= f.radio_button :status, 'Complete' %>
 <%= f.label :status, 'Complete', :value => "Complete" %>
 <%= f.radio_button :status, 'Reviewed' %>
@@ -37,5 +51,5 @@
 <% end %>
 <br>
 </table>
-<%= link_to "Show", record_path %>
-<%= link_to "Back", records_path %>
+<%= link_to "Show", record_path, class: "btn btn-default btn-sm" %>
+<%= link_to "Back", records_path, class: "btn btn-default btn-sm" %>

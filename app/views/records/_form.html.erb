@@ -1,24 +1,35 @@
-<%= form_for @record do |f| %>
+<%= form_for(@record, :html => { :multipart => true }) do |f| %>
+
 <table class="table"><br>
  <div>
  <tr>
 <td>
  <%= f.label :Username %></td>
 <td>
- <%= f.text_field :username %></td></tr>
+ <%= f.text_field :username, class: "form-control" %></td></tr>
   <tr><td><%= f.label :Article_Name  %></td>
-    <td><%= f.text_field :name %></td>
+    <td><%= f.text_field :name, class: "form-control" %></td>
 </tr>
 <tr><td>
   <%= f.label :Description %></td>
 <td>
-  <%= f.text_area :description %></td></tr>
+  <%= f.text_area :description, class: "form-control" %></td></tr>
 <tr>
-<td><%= "Add Tag" %></td>
+<td><%= f.label :Add_Tag %></td>
 <%= f.fields_for :tags do |d| %>
-<td><%= d.text_field :tag_name %></td>
+<td><%= d.text_field :tag_name, class: "form-control" %></td>
 <% end %></tr>
- </div>
+  
+  <tr>
+  <%= f.fields_for :photos do |m| %>
+      <div class="field">
+  <td><%= m.file_field :avatar, :name => "record[photos_attributes][0][avatar]" %></td>
+   <td><%= m.file_field :avatar, :name => "record[photos_attributes][1][avatar]" %></td>
+     </tr>
+</div>
+<% end %> 
+
+</div>
 </table><br>
 <div class="actions">
  <%= f.submit %>

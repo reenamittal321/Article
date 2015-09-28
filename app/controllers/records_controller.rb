@@ -8,11 +8,13 @@ before_action :set_record, only: [:show, :edit, :update, :destroy]
   def new
  
     @record = Record.new
+    @photo = @record.photos.build
     @tag = @record.tags.build
+    
   end
 
   def create
-   
+   debugger
     @record = Record.new(record_params)
     @record.user_id = current_user.id    
     @record.save
@@ -22,6 +24,7 @@ before_action :set_record, only: [:show, :edit, :update, :destroy]
   def edit
   
    authorize! :edit, @record
+   @photos = @record.photos.all
     @comments = @record.comments.all
     @tags = @record.tags.all
   
@@ -40,6 +43,7 @@ before_action :set_record, only: [:show, :edit, :update, :destroy]
 
   def show
    authorize! :read, @record
+    @photos = @record.photos.all
     @comments = @record.comments.all
    @tags = @record.tags.all
   end
@@ -67,7 +71,7 @@ before_action :set_record, only: [:show, :edit, :update, :destroy]
   
       @r = Record.with_deleted.restore(params[:id])
       if @r
-       redirect_to records_path
+       redirect_to deleted_path
       end
 
   end
@@ -85,6 +89,6 @@ before_action :set_record, only: [:show, :edit, :update, :destroy]
 
   def record_params  
   
-   params.require(:record).permit(:id, :name, :description, :username, :status, :user_id, :tags_attributes => [:id, :record_id, :tag, :tag_name], :comments_attributes => [:id, :record_id, :user_id, :comment]) 
+   params.require(:record).permit(:id, :name, :description, :username, :status, :user_id, :tags_attributes => [:id, :record_id, :tag, :tag_name], :comments_attributes => [:id, :record_id, :user_id, :comment], :photos_attributes => [:id, :record_id, :avatar]) 
   end
 end

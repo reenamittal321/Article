@@ -11,7 +11,7 @@ gem 'rails', '4.2.3'
 # Use Uglifier as compressor for JavaScript assets
 
 # Use CoffeeScript for .coffee assets and views
-
+gem 'carrierwave'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 gem 'will_paginate', '~> 3.0.6'
