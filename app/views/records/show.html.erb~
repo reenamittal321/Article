@@ -21,10 +21,10 @@
 </tr>
 <% end %><tr>
 <%= f.fields_for :tags do |d| %>
-
+<% unless d.object.tag.blank? %> 
 <td><%= link_to d.object.tag, tag_path(d.object.id) %>
 <%= link_to "(Remove)", tag_path(d.object.id), method: :delete, data: {confirm: 'Are u Sure' } %></td>
-
+<% end %>
 <% end %>
 </tr>
 <tr>
@@ -72,7 +72,6 @@
 
 <% end %>
 </table>
-<br>
-<br>
+
 <%= link_to "Edit", edit_record_path, class: "btn btn-default btn-sm" %>
 <%= link_to "Back", records_path, class: "btn btn-default btn-sm" %>

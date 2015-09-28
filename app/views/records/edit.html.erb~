@@ -32,7 +32,7 @@
 <tr><td>
 <%= f.label :Add_photo %></td>
 <td><%= f.fields_for :photos do |n| %>
-<%= n.file_field :avatar %></td>
+<%= n.file_field :avatar, :name => "record[photos_attributes][10][avatar]" %></td>
 <% end %>
 </tr>
 <tr><td><%= f.label :status %></td><td>

@@ -16,7 +16,7 @@
  <% end %></tr>
 <tr>
 <td><%= f.label :Add_Tag %></td>
-<td><%= f.fields_for :tags do |a| %>
+<td><%= f.fields_for :tag do |a| %>
   <%= a.text_field :tag_name, :name => "record[tags_attributes][15][tag_name]", class: "form-control" %></td>
 </tr>
 <% end %><tr>
@@ -72,7 +72,6 @@
 
 <% end %>
 </table>
-<br>
-<br>
+
 <%= link_to "Edit", edit_record_path, class: "btn btn-default btn-sm" %>
 <%= link_to "Back", records_path, class: "btn btn-default btn-sm" %>

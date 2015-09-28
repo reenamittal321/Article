@@ -14,7 +14,6 @@ before_action :set_record, only: [:show, :edit, :update, :destroy]
   end
 
   def create
-   debugger
     @record = Record.new(record_params)
     @record.user_id = current_user.id    
     @record.save
