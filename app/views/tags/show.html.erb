@@ -27,8 +27,8 @@
  <% if can? :destroy, p.record %><%= link_to "Delete", record_path(p.record_id), method: :delete, data: { confirm: "Are u sure" } %><% end %></td>
 <td>
  <% if can? :destroyed, p.record %><%= link_to "Destroy", records_destroyed_path(p.record_id), data: { confirm: 'Are u sure? ' } %></td></tr>
-
 <% end %>
+
 <% end %>
 <% end %>
 </table>

@@ -1,16 +1,17 @@
 <table class="table">
 <tr>
-<td><%= "Name" %></td>
+<b></b><td><b><%= "Name" %></b></td></b>
 
 <td><%= @record.name %></td></tr>
 <tr>
-<td><%= "description" %></td>
+<td><b><%= "Description" %></b></td>
 
 <td><%= @record.description %></td>
 </tr>
 
 <%= form_for(@record, :html => { :multipart => true }) do |f| %>
-<tr><%= f.fields_for :photos do |m| %>
+<tr><td><%= f.label :Photos %></td>
+	</tr><tr><%= f.fields_for :photos do |m| %>
     <td>
    <%= image_tag m.object.avatar %>
  </td><% end %></tr>

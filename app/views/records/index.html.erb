@@ -20,10 +20,9 @@
  
    <% @records.each do |a| %>
     <tr>
-
-     <td> 
-     <% if a.name %>
-  <button type="button" class="btn btn-link has-popover" data-toggle="popover" title="Article Name" data-content="<%= a.name %>"><%= a.username %></button>
+       <td>
+     <% if a.user.name %>
+  <button type="button" class="btn btn-link has-popover" data-toggle="popover" title="Article Name" data-content="<%= a.name %>"><%= a.user.name %></button>
 <% end %>
  </td>
      <td><span class="has-tooltip" data-toggle="tooltip" title="<%= "Created on #{a.created_at.strftime("%m/%e/%Y at %w:%M %p")}, Last modified on #{a.updated_at.strftime("%m/%e/%Y at %w:%M %p")}" %>"><% if a.name? %>
@@ -49,10 +48,6 @@
    
   
 </table>
-
-
-
-
 
   </div>
 <br>
