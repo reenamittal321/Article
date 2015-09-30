@@ -17,7 +17,7 @@
     </tr>
     </thead>
   
- 
+ <%= form_tag destroy_multiple_path, method: :delete do %>
    <% @records.each do |a| %>
     <tr> 
 
@@ -31,37 +31,38 @@
 <% end %></span></td>
      
       <td>   <% if can? :edit, a %>
-     <%= link_to edit_record_path(a), :class => "btn btn-default" do %>
-       <i class="glyphicon glyphicon-pencil">Edit</i>
+     <%= link_to edit_record_path(a) do %>
+       <span class="glyphicon glyphicon-pencil"><i class="btn btn-link has-popover" data-toggle="popover" data-content="Edit"></i></span>
          <% end %>
        <% end %></td>
        
      <td>
-       <%= link_to record_path(a), :class => "btn btn-default" do %>
+       <%= link_to record_path(a), :class => "btn btn-default btn-sm" do %>
        <i class="glyphicon glyphicon-search">Show</i>
          <% end %></td>
       <td> <% if can? :destroy, a %>
 <%= link_to record_path(a), method: :delete, data: { confirm: 'Are u sure? ' }, :class => "btn btn-danger" do %>
-   <i class="glyphicon glyphicon-remove">Delete</i><% end %>
+   <i class="glyphicon glyphicon-thumbs-up">Delete</i><% end %>
    <% end %></td>
        <td><% if can? :destroyed, a %>
    <td><%= link_to records_destroyed_path(a), data: { confirm: 'Are u sure? ' }, :class => "btn btn-danger" do %>
-   	<i class="glyphicon glyphicon-remove">Destroy</i>
+   	<i class="icon-pencil icon-white">Destroy</i>
    <% end %>
       <% end %></td>
       
+<td><%= check_box_tag "record_ids[]", a.id %></td>
+
+
+<% end %><tr>
+<td><%= submit_tag "Delete selected" %></td>
   <% end %>
   </tr>
 <tr>
-   <%= form_tag destroy_multiple_path, method: :delete do %>
-<td><%= check_box_tag "record_ids[]", id %></td>
-
-<td><%= submit_tag "Delete selected" %></td>
-<% end %>
+   
   </td></tr>
 </table>
 
   </div>
 <br>
-<%= will_paginate @records %>
+
 

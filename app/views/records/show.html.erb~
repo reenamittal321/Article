@@ -57,24 +57,12 @@
 
 
 <%= f.fields_for :comment do |a| %>
-<% if a.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(a.errors.count, "error") %> prohibited
-        this comment from being saved:
-      </h2>
-      <ul>
-        <% a.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+
    <td>   <%= a.text_area :comment, :name => "record[comments_attributes][15][comment]", :class => "form-control" %>
 
 <%= a.hidden_field :user_id, :value => current_user.id, :name => "record[comments_attributes][15][user_id]" %></td>
 <td>
-<%= a.submit "Save Comment" %></td>
+<%= a.submit "Save Comment" class: "glyphicon glyphicon-thumbs-up" %></td>
 </tr>
 <% end %>
 
