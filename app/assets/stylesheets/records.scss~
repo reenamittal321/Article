@@ -3,7 +3,3 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-html body {
-    background-image: url(image_path('beach_side-wide.jpg'));
-}
-

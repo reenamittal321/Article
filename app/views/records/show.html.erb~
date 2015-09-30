@@ -1,74 +1,83 @@
 <table class="table">
 <tr>
-<td><%= "Name" %></td>
+<b></b><td><b><%= "Name" %></b></td></b>
 
 <td><%= @record.name %></td></tr>
 <tr>
-<td><%= "description" %></td>
+<td><b><%= "Description" %></b></td>
 
 <td><%= @record.description %></td>
 </tr>
 
-<%= form_for(@record, :html => { :multipart => true }) do |f| %>
-<tr><%= f.fields_for :photos do |m| %>
+<tr>
+<td><b><%= "Photos" %></td><td><% @photos.each do |f| %></td>
+	</tr><tr>
     <td>
-   <%= image_tag m.object.avatar %>
+   <%= image_tag f.avatar %>
  </td><% end %></tr>
 <tr>
-<td><%= f.label :Add_Tag %></td>
-<td><%= f.fields_for :tag do |a| %>
-  <%= a.text_field :tag_name, :name => "record[tags_attributes][15][tag_name]", class: "form-control" %></td>
-</tr>
-<% end %><tr>
-<%= f.fields_for :tags do |d| %>
-<% unless d.object.tag.blank? %> 
-<td><%= link_to d.object.tag, tag_path(d.object.id) %>
-<%= link_to "(Remove)", tag_path(d.object.id), method: :delete, data: {confirm: 'Are u Sure' } %></td>
+<td><b><%= "Tag" %></td>
+
+<% @tags.each do |d| %>
+<% unless d.tag.blank? %> 
+<td><%= link_to d.tag, tag_path(d.id) %>
+<%= link_to "(Remove)", tag_path(d.id), method: :delete, data: {confirm: 'Are u Sure' } %></td>
 <% end %>
 <% end %>
 </tr>
 <tr>
-<td><u><%= f.label :Comments %></td></u>
-<tr>
-<%= f.fields_for :comments do |a| %>
-  
+<td><u><b><%= "Comments" %></b></td></u>
+
+<% @comments.each do |f| %>
+<%= form_for f do |a| %>
+
+  <tr>
 <% unless a.object.comment.blank? %>
 <td><%= a.object.user.name  %></td>
 <td>
 <%= a.object.comment if (current_user.id != a.object.user_id) %>
 <%= a.text_field :comment, class: "form-control" if (current_user.id == a.object.user_id) %>
-<td><%= link_to "Delete", comment_path(a.object.id), method: :delete, data: { confirm: 'Are u sure' } if (current_user.id == a.object.user_id)  %></td>
+<td><%= link_to "Delete", comment_path(a.object.id), class: "btn btn-default btn-sm", method: :delete, data: { confirm: 'Are u sure' } if (current_user.id == a.object.user_id)  %></td>
 
-<% end %>
+
+
+<td>
+<%= a.submit "Edit Comment" if (current_user.id == a.object.user_id) %></td></tr>
+<% end %><% end %><% end %>
+
+
 </tr>
 
-<% end %>
 <tr>
 <td>
+<b><%= "Add Comment" %></b></td>
+<%= form_for(@record) do |f| %>
+
+
+
 
 <%= f.fields_for :comment do |a| %>
-
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Add Comment</button>
-<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="container-fluid">
-      <%= a.text_area :comment, :name => "record[comments_attributes][15][comment]" %>
-<div class="modal-footer">
-       <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-       
-      </div>
+<% if a.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(a.errors.count, "error") %> prohibited
+        this comment from being saved:
+      </h2>
+      <ul>
+        <% a.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
     </div>
-  </div>
-</div>
-</div>
+  <% end %>
+   <td>   <%= a.text_area :comment, :name => "record[comments_attributes][15][comment]", :class => "form-control" %>
+
 <%= a.hidden_field :user_id, :value => current_user.id, :name => "record[comments_attributes][15][user_id]" %></td>
+<td>
+<%= a.submit "Save Comment" %></td>
 </tr>
 <% end %>
-<tr>
-<td>
-<%= f.submit "Post" %></td>
-</tr>
+
 
 <% end %>
 </table>

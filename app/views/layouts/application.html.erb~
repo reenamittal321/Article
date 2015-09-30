@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+	 
   <title>Article</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+   
   <%= csrf_meta_tags %>
 </head>
 <body>
+	<%= render 'shared/navigation' %>
 <% flash.each do |name, msg| -%>
   <%= content_tag :div, msg, class: "alert alert-#{name}" %>
 <% end -%>
@@ -27,5 +30,6 @@
   <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
   <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
 <% end %>
+
 </body>
 </html>

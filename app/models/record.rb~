@@ -1,5 +1,6 @@
 class Record < ActiveRecord::Base
   acts_as_paranoid
+validates :comment, presence: true
   has_many :comments
   has_many :tags
   has_many :photos

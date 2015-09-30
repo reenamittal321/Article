@@ -13,5 +13,9 @@
  *= require_tree .
  *= require_self
  */
+html body {
+    background: url(image_path('images.jpg'));
+}
+
 @import "bootstrap-sprockets"
 @import "bootstrap"

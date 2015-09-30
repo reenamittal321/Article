@@ -1,0 +1,8 @@
+
+<% debugger %>
+<% form_for @comments do |a| %>
+<% debugger %>
+<%= a.user.name %>
+<%= a.comment %>
+<%= a.submit %>
+<% end %>

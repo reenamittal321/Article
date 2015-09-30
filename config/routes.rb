@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :tags
   resources :records do
     get :restore, on: :member
+    delete :destroy_multiple, on: :collection
     resources :comments
        
     resources :tags
@@ -24,7 +25,7 @@ Rails.application.routes.draw do
    get '/deleted' => 'records#deleted'
    get 'records/:id/destroyed' => 'records#destroyed', as: :records_destroyed
    put 'records/:id/restore' => 'records#restore', as: :records_restore
-   
+   delete 'destroy_multiple' => 'records#destroy_multiple'
    get '/display' => 'records#display'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
