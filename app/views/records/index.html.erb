@@ -22,9 +22,8 @@
     <tr> 
 
        <td>
-     <% if a.user.name %>
-  <button type="button" class="btn btn-link has-popover" data-toggle="popover" title="Article Name" data-content="<%= a.name %>"><%= a.user.name %></button>
-<% end %>
+     <%= a.user.name %>
+
  </td>
      <td><span class="has-tooltip" data-toggle="tooltip" title="<%= "Created on #{a.created_at.strftime("%m/%e/%Y at %w:%M %p")}, Last modified on #{a.updated_at.strftime("%m/%e/%Y at %w:%M %p")}" %>"><% if a.name? %>
  <%= a.name %>
@@ -49,13 +48,15 @@
    	<i class="glyphicon glyphicon-remove">Destroy</i>
    <% end %>
       <% end %></td>
-      
+      <% if can? :destroy_multiple, a %>
 <td><%= check_box_tag "record_ids[]", a.id %></td>
+<% end %>
+<% end %>
+<tr>
+<td>
 
-
-<% end %><tr>
-<td><%= submit_tag "Delete selected" %></td>
-  <% end %>
+<%= submit_tag "Delete selected" %></td>
+<% end %>
   </tr>
 <tr>
    

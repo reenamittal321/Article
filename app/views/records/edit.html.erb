@@ -36,8 +36,8 @@
 <tr><td>
 <%= f.label :Add_photo %></td>
 <td><%= f.fields_for :photo do |n| %>
-<%= n.file_field :avatar, :name => "record[photos_attributes][10][avatar]" %></td>
-<% end %>
+<%= n.file_field :avatar, :name => "record[photos_attributes][10][avatar]" %>
+<% end %></td>
 </tr>
 <tr><td><%= f.label :status %></td><td>
 <%= f.radio_button :status, 'Complete' %>

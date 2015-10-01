@@ -8,7 +8,7 @@ class Ability
     #   if user.admin?
          
     #   else
-        can :edit, Record, :all
+        can :edit, Record, :user_id => user.id
         can :read, :all
         can :destroy, Record, :user_id => user.id
         can :destroyed, Record, :user_id => user.id

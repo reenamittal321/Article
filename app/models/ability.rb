@@ -12,6 +12,7 @@ class Ability
         can :read, :all
         can :destroy, Record, :user_id => user.id
         can :destroyed, Record, :user_id => user.id
+        can :destroy_multiple, Record, :user_id => user.id
     #   end
     #
     # The first argument to `can` is the action you are giving the user

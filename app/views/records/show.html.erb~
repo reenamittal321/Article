@@ -10,11 +10,12 @@
 </tr>
 
 <tr>
-<td><b><%= "Photos" %></td><td><% @photos.each do |f| %></td>
-	</tr><tr>
-    <td>
+<td><b><%= "Photos" %></td></tr><tr> <td>
+<% @photos.each do |f| %>
+	
+   
    <%= image_tag f.avatar %>
- </td><% end %></tr>
+ <% end %></td></tr>
 <tr>
 <td><b><%= "Tag" %></td>
 
@@ -41,9 +42,11 @@
 
 
 
-<td>
-<%= a.submit "Edit Comment" if (current_user.id == a.object.user_id) %></td></tr>
-<% end %><% end %><% end %>
+<td><% if current_user.id == a.object.user_id %>
+ <%= button_tag(type: "submit", class: "btn btn-default") do %>
+Edit Comment <i class="glyphicon glyphicon-pencil"></i>
+<% end %></td></tr>
+<% end %><% end %><% end %><% end %>
 
 
 </tr>
@@ -62,7 +65,9 @@
 
 <%= a.hidden_field :user_id, :value => current_user.id, :name => "record[comments_attributes][15][user_id]" %></td>
 <td>
-<%= a.submit "Save Comment" class: "glyphicon glyphicon-thumbs-up" %></td>
+<%= button_tag(type: "submit", class: "btn btn-default") do %>
+    Save Comment <i class="glyphicon glyphicon-thumbs-up"></i>
+<% end %></td>
 </tr>
 <% end %>
 
