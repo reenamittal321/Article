@@ -18,7 +18,10 @@ class TagsController < ApplicationController
   end
 
   def destroy
-     if @tag.destroy
+debugger
+   tag = Tag.find(params[:record_id])
+   @destroy = Record.tags.find(params[:id])
+     if @destroy.destroy
        redirect_to record_path(@tag.record_id)
      end
   end

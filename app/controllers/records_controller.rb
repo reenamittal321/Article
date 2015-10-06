@@ -3,7 +3,7 @@ before_action :set_record, only: [:show, :edit, :update, :destroy]
 
   def index
     
-   @records = Record.all
+   @records = Record.all.paginate(:page => params[:page], :per_page => 10)
   end
 
   def new

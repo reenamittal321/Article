@@ -21,7 +21,9 @@ class CommentsController < ApplicationController
     record = Record.find(@comment.record_id)
     @coment = record.comments.find(params[:id])
       if @coment.update_attributes(comment_params)
+         
         redirect_to record_path(@comment.record_id)
+            
       end
   end
   
@@ -30,9 +32,11 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-
-    if @comment.destroy
-      redirect_to record_path(@comment.record_id)
+debugger
+     record = Record.find(@comment.record_id)
+      @destroy = record.comments.find(params[:id])
+    if @destroy.destroy
+      redirect_to records_path
     end
   end
 

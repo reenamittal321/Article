@@ -3,3 +3,32 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
+html body {
+    background-image: url(image_path('beach_side-wide.jpg'));
+}
+
+
+
+<html>
+<body>
+
+<div id="demo">Let AJAX change this text</div>
+
+<button type="button" onclick="loadDoc()">Change Content</button>
+
+<script>
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+      document.getElementById("demo").innerHTML = xhttp.responseText;
+    }
+  }
+  xhttp.open("GET", "show.html.erb", true);
+  xhttp.send();
+}
+</script>
+
+</body>
+</html>
+

@@ -17,12 +17,12 @@
 
  <td>	<%= a.text_field :tag_name, :name => "record[tags_attributes][15][tag_name]", :class => "form-control" %>
  <% end %></td></tr>
-
+<tr>
 <%= f.fields_for :tags do |d| %>
 <% unless d.object.tag.blank? %>
-<tr><td><%= d.object.tag %></td>
+<td><%= d.object.tag %>
 
-<td><%= link_to "Remove", tag_path(d.object.id), method: :delete, data: {confirm: 'Are u Sure' } %></td>
+	<%= link_to "(Remove)", tag_path(d.object.id), method: :delete, data: {confirm: 'Are u Sure' } %></td>
 <% end %>
 
 <% end %>
@@ -31,14 +31,16 @@
 <tr><%= f.fields_for :photos do |m| %>
  <td>
   <%= image_tag m.object.avatar, :class => "img-rounded" %>
+
   <%= m.file_field :avatar %><br>
-   <%= link_to "Delete", photo_path(m.object.id), method: :delete, data: {confirm: "Are u sure" } %>
+
+   <%= link_to "Delete", photo_path(m.object.id), method: :delete, data: {confirm: "Are u sure" }, class: "btn btn-default btn-sm"%>
   </td><% end %></tr>
 <tr><td>
 <%= f.label :Add_photo %></td>
 <td><%= f.fields_for :photo do |n| %>
-<%= n.file_field :avatar, :name => "record[photos_attributes][10][avatar]" %></td>
-<% end %>
+<%= n.file_field :avatar, :name => "record[photos_attributes][10][avatar]" %>
+<% end %></td>
 </tr>
 <tr><td><%= f.label :status %></td><td>
 <%= f.radio_button :status, 'Complete' %>
@@ -56,5 +58,7 @@
 <% end %>
 <br>
 </table>
-<%= link_to "Show", record_path, class: "btn btn-default btn-sm" %>
+<%= link_to record_path, class: "btn btn-default btn-sm" do %>
+<i class="glyphicon glyphicon-search">Show</i><% end %>
+
 <%= link_to "Back", records_path, class: "btn btn-default btn-sm" %>

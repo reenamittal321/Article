@@ -21,6 +21,7 @@
 <%= f.fields_for :tags do |d| %>
 <% unless d.object.tag.blank? %>
 <td><%= d.object.tag %>
+
 	<%= link_to "(Remove)", tag_path(d.object.id), method: :delete, data: {confirm: 'Are u Sure' } %></td>
 <% end %>
 
@@ -29,9 +30,11 @@
 
 <tr><%= f.fields_for :photos do |m| %>
  <td>
-  <%= image_tag m.object.avatar, :class => "img-rounded" %>
+  <%= image_tag m.object.avatar, :class => "img-thumbnail" %>
+
   <%= m.file_field :avatar %><br>
-   <%= link_to "Delete", photo_path(m.object.id), class: "btn btn-default btn-sm", method: :delete, data: {confirm: "Are u sure" } %>
+
+   <%= link_to "Delete", photo_path(m.object.id), method: :delete, data: {confirm: "Are u sure" }, class: "btn btn-default btn-sm"%>
   </td><% end %></tr>
 <tr><td>
 <%= f.label :Add_photo %></td>

@@ -31,7 +31,7 @@
      
       <td>   <% if can? :edit, a %>
      <%= link_to edit_record_path(a) do %>
-       <span class="glyphicon glyphicon-pencil"><i class="btn btn-link has-popover" data-toggle="popover" data-content="Edit"></i></span>
+       <span class="glyphicon glyphicon-pencil"><i class="btn btn-link btn-xs has-popover" data-toggle="popover" data-content="Edit"></i></span>
          <% end %>
        <% end %></td>
        
@@ -41,11 +41,11 @@
          <% end %></td>
       <td> <% if can? :destroy, a %>
 <%= link_to record_path(a), method: :delete, data: { confirm: 'Are u sure? ' }, :class => "btn btn-danger" do %>
-   <i class="glyphicon glyphicon-thumbs-up">Delete</i><% end %>
+   <i class="glyphicon glyphicon-remove">Delete</i><% end %>
    <% end %></td>
        <td><% if can? :destroyed, a %>
    <td><%= link_to records_destroyed_path(a), data: { confirm: 'Are u sure? ' }, :class => "btn btn-danger" do %>
-   	<i class="glyphicon glyphicon-remove">Destroy</i>
+   	<i class="glyphicon glyphicon-trash">Destroy</i>
    <% end %>
       <% end %></td>
       <% if can? :destroy_multiple, a %>
@@ -65,5 +65,5 @@
 
   </div>
 <br>
-
+<%= will_paginate @records %>
 

@@ -16,7 +16,10 @@ before_action :set_photo, only: [:show, :edit, :update, :destroy]
  end 
 
  def destroy
-  if @photo.destroy
+debugger
+   photo = Photo.find(params[:record_id])
+     @destroy = Record.photos.find(params[:id])
+  if @destroy.destroy
     redirect_to edit_record_path(@photo.record_id) 
   end
  end
